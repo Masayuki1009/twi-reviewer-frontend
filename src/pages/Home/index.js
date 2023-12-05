@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Box } from "@mui/material";
-import SearchForm from "../SearchForm";
+import SearchForm from "../../components/SearchForm";
 // 他のコンポーネントのインポートもここで行う
 
 export const Home = () => {
