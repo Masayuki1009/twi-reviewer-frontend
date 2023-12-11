@@ -13,9 +13,13 @@ function SearchForm() {
   return (
     <Grid
       container
-      spacing={1}
-      alignItems="center"
-      sx={{ backgroundColor: "white", padding: 1, borderRadius: 1 }}
+      justifyContent="center" // ここで中央揃えを設定
+      sx={{
+        backgroundColor: "white",
+        padding: 2,
+        marginBottom: 3,
+        borderRadius: 1,
+      }}
     >
       <Grid item xs>
         <TextField
