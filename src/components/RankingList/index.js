@@ -38,13 +38,11 @@ function RankingList() {
         display: "flex",
         justifyContent: "center",
         backgroundColor: "white",
+        marginBottom: "3rem",
       }}
     >
       <Container maxWidth="sm">
-        <Paper
-          elevation={0}
-          sx={{ width: "100%", bgcolor: "background.paper" }}
-        >
+        <Paper elevation={0} sx={{ width: "100%" }}>
           <List>
             {dummyData.map((data, index) => (
               <ListItem
