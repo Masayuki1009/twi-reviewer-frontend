@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Box } from "@mui/material";
 import SearchForm from "../../components/SearchForm";
 import RankingList from "../../components/RankingList";
+import CategoryList from "../../components/CategoryList";
 // 他のコンポーネントのインポートもここで行う
 
 export const Home = () => {
@@ -18,6 +19,7 @@ export const Home = () => {
       <Container maxWidth="sm">
         <SearchForm />
         <RankingList />
+        <CategoryList />
         {/* 他のコンポーネントや要素があれば、ここに追加します */}
       </Container>
     </Box>
