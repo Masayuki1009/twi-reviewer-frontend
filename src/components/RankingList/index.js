@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   List,
   ListItem,
@@ -9,29 +9,19 @@ import {
   Paper,
   Box,
   Container,
+  Rating,
 } from "@mui/material";
-
-// Dummy data for the list items
-const dummyData = [
-  {
-    name: "ツイッタラー1",
-    image: "/path/to/avatar1.jpg",
-    details: "詳細情報1",
-  },
-  {
-    name: "ツイッタラー2",
-    image: "/path/to/avatar2.jpg",
-    details: "詳細情報2",
-  },
-  {
-    name: "ツイッタラー3",
-    image: "/path/to/avatar3.jpg",
-    details: "詳細情報3",
-  },
-  // ...other YouTubers' data
-];
+import { homeService } from "../../services/home-service";
 
 function RankingList() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    homeService.getData().then((fetchedData) => {
+      setData(fetchedData);
+    });
+  }, []);
+
   return (
     <Box
       sx={{
@@ -46,7 +36,21 @@ function RankingList() {
           sx={{ width: "100%", bgcolor: "background.paper" }}
         >
           <List>
-            {dummyData.map((data, index) => (
+            <Typography
+              sx={{
+                borderBottom: "1px solid #e0e0e0",
+                "&:last-child": {
+                  borderBottom: "none",
+                },
+                fontSize: "1rem", // フォントサイズを大きく
+                fontWeight: "bold", // フォントを太く
+                fontFamily: "'Comic Neue', cursive", // Google Fontsなどからインポートしたポップなフォントを指定
+                borderBottom: "1px solid #e0e0e0", // 下線を引く
+              }}
+            >
+              人気ツイッタラー一覧
+            </Typography>
+            {data.map((data, index) => (
               <ListItem
                 key={index}
                 alignItems="flex-start"
@@ -67,14 +71,32 @@ function RankingList() {
                 <ListItemText
                   primary={data.name}
                   secondary={
-                    <Typography
-                      component="span"
-                      variant="body2"
-                      sx={{ display: "inline" }}
-                      color="textPrimary"
-                    >
-                      {data.details}
-                    </Typography>
+                    <>
+                      <Rating
+                        name="read-only"
+                        value={data.averageTotalValue}
+                        readOnly
+                        sx={{
+                          fontSize: "1rem",
+                          paddingRight: "0.5rem",
+                          // top: ,
+                        }}
+                      />
+                      <Typography
+                        component="span"
+                        variant="body2"
+                        sx={{
+                          fontWeight: "bold", // 太字にする
+                          fontSize: "1rem", // フォントサイズを大きくする
+                          position: "relative", // 相対位置
+                          top: "-0.1rem", // ほんの少しだけ上に移動
+                        }}
+                        color="textPrimary"
+                      >
+                        {data.averageTotalValue.toFixed(2)}
+                        {/* toFixed(2) : 小数第二位まで表示 */}
+                      </Typography>
+                    </>
                   }
                 />
               </ListItem>
