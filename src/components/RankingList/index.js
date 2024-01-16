@@ -12,6 +12,7 @@ import {
   Rating,
 } from "@mui/material";
 import { homeService } from "../../services/home-service";
+import { Link } from "react-router-dom";
 
 function RankingList() {
   const [data, setData] = useState([]);
@@ -60,6 +61,8 @@ function RankingList() {
                     borderBottom: "none",
                   },
                 }}
+                component={Link} // ListItemをLinkコンポーネントとして使う
+                to={`/detail/${data.id}`} // 遷移先のURLを指定
               >
                 <ListItemAvatar>
                   <Avatar
@@ -69,7 +72,14 @@ function RankingList() {
                   />
                 </ListItemAvatar>
                 <ListItemText
-                  primary={data.name}
+                  primary={
+                    <Link
+                      to={`/detail/${data.id}`}
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      {data.name}
+                    </Link>
+                  }
                   secondary={
                     <>
                       <Rating
