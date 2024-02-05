@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Box } from "@mui/material";
+import TotalSummary from "../../components/TotalSummary";
 // 他のコンポーネントのインポートもここで行う
 
 export const TwitterDetail = () => {
@@ -14,6 +15,7 @@ export const TwitterDetail = () => {
     >
       {/* Containerのスタイルをここで調整する */}
       <Container maxWidth="sm">
+        <TotalSummary />
         {/* 他のコンポーネントや要素があれば、ここに追加します */}
       </Container>
     </Box>
