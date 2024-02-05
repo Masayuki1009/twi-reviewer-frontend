@@ -1,10 +1,9 @@
 import apiClient from "../../api/apiClient";
 
-const getTwittererDetail = () => {
+const getTwittererDetail = (id) => {
   return apiClient.get(`/detail/${id}`).then((response) => response.data);
 };
 
-export const homeService = Object.freeze({
-  getData,
+export const twittererDetailService = Object.freeze({
   getTwittererDetail,
 });
