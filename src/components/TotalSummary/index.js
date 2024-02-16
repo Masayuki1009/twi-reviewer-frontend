@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
 import {
   Box,
   Container,
@@ -18,7 +17,6 @@ import {
   Tooltip,
   Legend,
 } from "chart.js"; // ChartJSのコア機能をインポート
-import { twittererDetailService } from "../../services/twittererdetail-service";
 
 // Chart.jsの登録
 ChartJS.register(
@@ -30,21 +28,7 @@ ChartJS.register(
   Legend
 );
 
-export const TwitterDetail = () => {
-  let { id } = useParams(); //idを取得
-  const [detailData, setDetailData] = useState(null);
-
-  useEffect(() => {
-    // idオブジェクトではなく、直接idを渡す
-    twittererDetailService.getTwittererDetail(id).then((fetchedData) => {
-      setDetailData(fetchedData); // ステートを設定
-    });
-  }, [id]);
-
-  if (!detailData) {
-    return <div>ローディング中...</div>;
-  }
-
+export const TotalSummary = ({ detailData }) => {
   // レーダーチャートのデータとオプションを設定
   const radarData = {
     labels: detailData.reviewCategoryNameList.map((c) => c.categoryName), // カテゴリ名
@@ -134,4 +118,4 @@ export const TwitterDetail = () => {
   );
 };
 
-export default TwitterDetail;
+export default TotalSummary;
